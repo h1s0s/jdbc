@@ -40,7 +40,7 @@ public class AuthorDelete {
 			int count = pstmt.executeUpdate();
 			
 			//4.결과처리
-			System.out.println(count + " 건이 저장되었습니다.");
+			System.out.println(count + " 건이 삭제되었습니다.");
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);
