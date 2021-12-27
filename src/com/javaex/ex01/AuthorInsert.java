@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AuthorApp {
+public class AuthorInsert {
 
 	public static void main(String[] args) {
 		
