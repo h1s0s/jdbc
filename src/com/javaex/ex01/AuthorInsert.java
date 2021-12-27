@@ -14,7 +14,7 @@ public class AuthorInsert {
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;//프리페어스테이트먼트 약자
-		ResultSet rs = null;
+		//ResultSet rs = null; select 절에만 사용
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -63,9 +63,6 @@ public class AuthorInsert {
 		} finally {
 			// 5. 자원정리
 			try {
-				if (rs != null) {
-					rs.close();
-				}
 				if (pstmt != null) {
 					pstmt.close();
 		}

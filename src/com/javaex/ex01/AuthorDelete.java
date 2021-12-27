@@ -13,7 +13,7 @@ public class AuthorDelete {
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -50,9 +50,6 @@ public class AuthorDelete {
 		
 			// 5. 자원정리
 			try {
-				if (rs != null) {
-					rs.close();
-				}
 				if (pstmt != null) {
 					pstmt.close();
 				}
