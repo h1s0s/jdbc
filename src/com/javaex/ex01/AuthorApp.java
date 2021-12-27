@@ -10,6 +10,7 @@ public class AuthorApp {
 
 	public static void main(String[] args) {
 		
+		//---------------------------------------------insert 문
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -29,11 +30,14 @@ public class AuthorApp {
 			//쿼리문을 자바에 코드로 넣는것
 			String query = "";
 			//query = query + "문자열"
-			query += "insert into author";
-			query += "values (seq_author_id.nextval, ?, ?)";// sql => values (seq_author_id.nextval, '이문열', '경북 영양');
+			query += " insert into author ";
+			query += " values (seq_author_id.nextval, ?, ?) ";// sql => values (seq_author_id.nextval, '이문열', '경북 영양');
+			System.out.println(query);
 			//1. sql문의 세미콜론(마침표)는 뺀다.
 			//2. +=는 기존 값에 붙여라.
 			//3. 데이터에 해당하는 부분은(값이 들어갈 자리는, ?로 표시)
+			//4. 앞뒤를 다 띄워줌(코드가 겹치면 오류남)
+			
 			
 			//int count = pstmt.executeUpdate(); //insert, update, delete
 			//rs = pstmt.executeQuery(); //select
@@ -47,6 +51,7 @@ public class AuthorApp {
 			
 			//실행
 			int count = pstmt.executeUpdate(); //쿼리문 실행, 성공하면 값이 1, 실패하면 값은 0
+			//자바에서 실행한 쿼리문은 커밋까지 실행됨.
 			
 			// 4.결과처리
 			System.out.println(count + " 건이 저장되었습니다.");
@@ -72,6 +77,6 @@ public class AuthorApp {
 			}
 		}
 	}
-
+	//--------------update문\
 }
 		
