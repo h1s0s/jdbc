@@ -5,11 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookSelect {
 
 	public static void main(String[] args) {
 
+		
+		List<BookVo> bookList = new ArrayList<BookVo>();
+		
 		// Book 데이터 가져오기
 			// 0. import java.sql.*;
 			Connection conn = null;
@@ -44,13 +49,22 @@ public class BookSelect {
 				//4.결과처리 (select문에는 이부분이 어려움)
 				//next()는 커서를 다음으로 옮김. 갈 수 있으면 true, 없으면 false가 나옴
 				while(rs.next()) {
-					int bookId = rs.getInt("book_id");//컬럼명, 별명 사용시 별명
-					String bookTitle = rs.getString("title");
-					String bookPubs = rs.getString("pubs");
-					String bookPubDate = rs.getString("pub_date");
-					String bookAuthorId = rs.getString("author_id");
+					int bId = rs.getInt("book_id");//컬럼명, 별명 사용시 별명
+					String bTitle = rs.getString("title");
+					String bPubs = rs.getString("pubs");
+					String bPubDate = rs.getString("pub_date");
+					int bAuthorId = rs.getInt("author_id");
 					
-					System.out.println(bookId + ", " + bookTitle + ", " + bookPubs + ", " + bookPubDate + ", " + bookAuthorId);
+					BookVo bvo = new BookVo(bId, bTitle, bPubs, bPubDate, bAuthorId);
+					
+					bookList.add(bvo);
+					
+					//System.out.println(bookId + ", " + bookTitle + ", " + bookPubs + ", " + bookPubDate + ", " + bookAuthorId);
+				}
+				
+				//출력하기
+				for(int i=0; i<bookList.size(); i++) {
+					System.out.println(bookList.get(i).getBookId() + ", " + bookList.get(i).getBookTitle() + ", " +bookList.get(i).getBookPubs() + ", " +bookList.get(i).getBookPubDate() + ", " + bookList.get(i).getBookAuthorId());
 				}
 				
 			} catch (ClassNotFoundException e) {

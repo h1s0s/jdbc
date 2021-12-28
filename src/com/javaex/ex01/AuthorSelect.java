@@ -5,16 +5,21 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthorSelect {
 
 	public static void main(String[] args) {
 
+		List<AuthorVo> authorList = new ArrayList<AuthorVo>();
+		
 		// Author 데이터 가져오기, 사용 빈도가 아주 높음
 			// 0. import java.sql.*;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
+			
 			try {
 				//1. JDBC 드라이버 (Oracle) 로딩
 				Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -32,7 +37,6 @@ public class AuthorSelect {
 				query += "        author_desc ";
 				query += " from   author ";
 				System.out.println(query);
-
 				
 				// 3.2 문자열을 쿼리문으로 만들기
 				pstmt = conn.prepareStatement(query);
@@ -50,12 +54,25 @@ public class AuthorSelect {
 					String authorDesc = rs.getString("author_desc");
 					*/
 					//쿼리문의 select 순서로 가져오기
+					
 					int authorId = rs.getInt(1);//컬럼명, 별명 사용시 별명
 					String authorName = rs.getString(2);
 					String authorDesc = rs.getString(3);
 					
-					System.out.println(authorId + "\t" + authorName + "\t" + authorDesc);
+					AuthorVo vo = new AuthorVo(authorId, authorName, authorDesc);
+					authorList.add(vo);
+					
+					//System.out.println(authorId + "\t" + authorName + "\t" + authorDesc);
 				}
+				//리스트 전체 출력
+				for(int i=0; i<authorList.size(); i++) {
+					AuthorVo authorVo = authorList.get(i);
+					System.out.println(authorVo.getAuthorId()+"," +authorVo.getAuthorName()+", "+authorVo.getAuthorDesc());
+				}
+				//첫번째 작가만 출력(0번 인덱스)
+				System.out.println("첫번째 작가 정보 출력");
+				System.out.println(authorList.get(0).getAuthorId() + ", " + authorList.get(1).getAuthorName() + ", " + authorList.get(1).getAuthorDesc());
+				
 				
 			} catch (ClassNotFoundException e) {
 				System.out.println("error: 드라이버 로딩 실패 - " + e);
