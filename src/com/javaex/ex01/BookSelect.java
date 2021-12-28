@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AuthorSelect {
+public class BookSelect {
 
 	public static void main(String[] args) {
 
-		// Author 데이터 가져오기, 사용 빈도가 아주 높음
+		// Book 데이터 가져오기
 			// 0. import java.sql.*;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -27,12 +27,13 @@ public class AuthorSelect {
 				//3. SQL문 준비 / 바인딩 / 실행
 				// 3.1 문자열 만들기
 				String query = "";
-				query += " select author_id id, ";
-				query += "        author_name, ";
-				query += "        author_desc ";
-				query += " from   author ";
+				query += " select  book_id,  ";
+				query += "         title, ";
+				query += "         pubs, ";
+				query += "         pub_date, ";
+				query += "         author_id ";
+				query += " from    book ";
 				System.out.println(query);
-
 				
 				// 3.2 문자열을 쿼리문으로 만들기
 				pstmt = conn.prepareStatement(query);
@@ -43,18 +44,13 @@ public class AuthorSelect {
 				//4.결과처리 (select문에는 이부분이 어려움)
 				//next()는 커서를 다음으로 옮김. 갈 수 있으면 true, 없으면 false가 나옴
 				while(rs.next()) {
-					/*
-					//컬럼 이름, 별명으로 가져오기
-					int authorId = rs.getInt("id");//컬럼명, 별명 사용시 별명
-					String authorName = rs.getString("author_name");
-					String authorDesc = rs.getString("author_desc");
-					*/
-					//쿼리문의 select 순서로 가져오기
-					int authorId = rs.getInt(1);//컬럼명, 별명 사용시 별명
-					String authorName = rs.getString(2);
-					String authorDesc = rs.getString(3);
+					int bookId = rs.getInt("book_id");//컬럼명, 별명 사용시 별명
+					String bookTitle = rs.getString("title");
+					String bookPubs = rs.getString("pubs");
+					String bookPubDate = rs.getString("pub_date");
+					String bookAuthorId = rs.getString("author_id");
 					
-					System.out.println(authorId + "\t" + authorName + "\t" + authorDesc);
+					System.out.println(bookId + ", " + bookTitle + ", " + bookPubs + ", " + bookPubDate + ", " + bookAuthorId);
 				}
 				
 			} catch (ClassNotFoundException e) {
@@ -79,4 +75,3 @@ public class AuthorSelect {
 			}
 		}				
 	}
-
