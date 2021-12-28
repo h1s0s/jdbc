@@ -42,7 +42,7 @@ public class AuthorInsert {
 			//int count = pstmt.executeUpdate(); //insert, update, delete
 			//rs = pstmt.executeQuery(); //select
 			//3.2 문자열을 쿼리문으로 만들기
-			pstmt = conn.prepareCall(query);
+			pstmt = conn.prepareStatement(query);
 			
 			//3.3 바인딩 (?에 데이터를 넣어주는 작업)
 			//문자열일때는 setString, 숫자일때는 setInt
