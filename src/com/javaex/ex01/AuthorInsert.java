@@ -46,8 +46,8 @@ public class AuthorInsert {
 			
 			//3.3 바인딩 (?에 데이터를 넣어주는 작업)
 			//문자열일때는 setString, 숫자일때는 setInt
-			pstmt.setString(1, "박경리");//첫번째 물음표에는 이문열
-			pstmt.setString(2, "경상남도 통영");//두번째 물음표에는 경북 영양
+			pstmt.setString(1, "기안84");//첫번째 물음표에는 이문열
+			pstmt.setString(2, "기안동에서 산 84년생");//두번째 물음표에는 경북 영양
 			
 			//3.4 실행
 			int count = pstmt.executeUpdate(); //쿼리문 실행, 성공하면 값이 1, 실패하면 값은 0
