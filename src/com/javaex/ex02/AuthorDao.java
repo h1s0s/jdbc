@@ -227,11 +227,6 @@ public class AuthorDao {
 						AuthorVo vo = new AuthorVo(authorId, authorName, authorDesc);
 						authorList.add(vo);
 					}
-					//리스트 전체 출력
-					for(int i=0; i<authorList.size(); i++) {
-						AuthorVo authorVo = authorList.get(i);
-						System.out.println(authorVo.getAuthorId()+"," +authorVo.getAuthorName()+", "+authorVo.getAuthorDesc());
-					}
 
 				} catch (ClassNotFoundException e) {
 					System.out.println("error: 드라이버 로딩 실패 - " + e);
