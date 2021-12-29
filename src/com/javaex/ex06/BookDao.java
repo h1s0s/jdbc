@@ -1,4 +1,4 @@
-package com.javaex.ex05;
+package com.javaex.ex06;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +20,7 @@ public class BookDao {
 	// 메소드 g/s
 
 	// 메소드 일반
-	public void bookInsert(String title, String pub, String pubDate, int authorId) {
+	public void bookInsert(BookVo bookVo) {
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -45,10 +45,10 @@ public class BookDao {
 			pstmt = conn.prepareStatement(query);
 
 			// 3.3 바인딩
-			pstmt.setString(1, title);
-			pstmt.setString(2, pub);
-			pstmt.setString(3, pubDate);
-			pstmt.setInt(4, authorId);
+			pstmt.setString(1, bookVo.getTitle());
+			pstmt.setString(2, bookVo.getPubs());
+			pstmt.setString(3, bookVo.getPubDate());
+			pstmt.setInt(4, bookVo.getBookId());
 
 			// 3.4 실행
 			int count = pstmt.executeUpdate();
@@ -76,7 +76,7 @@ public class BookDao {
 		}
 	}
 
-	public void BookUpdate(int bookId, String bookTitle) {
+	public void BookUpdate(BookVo bookVo) {
 
 		// 0. import java.sql.*;
 		Connection conn = null;
@@ -96,8 +96,8 @@ public class BookDao {
 			String query = "";
 			query += " update  book ";
 			query += " set     title = ? ";
-			// query += " set book_pubs = ?, ";
-			// query += " set book_pub_date = ? ";
+			query += " set book_pubs = ?, ";
+			query += " set book_pub_date = ? ";
 			query += " where   book_id = ? ";
 			System.out.println(query);
 
@@ -105,10 +105,10 @@ public class BookDao {
 			pstmt = conn.prepareStatement(query);
 
 			// 3.3 바인딩
-			pstmt.setString(1, bookTitle);
-			// pstmt.setString(2, bookPubs);
-			// pstmt.setString(3, bookPubDate);
-			pstmt.setInt(2, bookId);
+			pstmt.setString(1, bookVo.getTitle());
+			pstmt.setString(2, bookVo.getPubs());
+			pstmt.setString(3, bookVo.getPubDate());
+			pstmt.setInt(4, bookVo.getBookId());
 
 			// 3.4 실행
 			int count = pstmt.executeUpdate();
@@ -254,6 +254,4 @@ public class BookDao {
 		}
 		return bookList;
 	}
-
 }
-
