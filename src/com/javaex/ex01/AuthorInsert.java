@@ -9,8 +9,6 @@ import java.sql.SQLException;
 public class AuthorInsert {
 
 	public static void main(String[] args) {
-		
-		//---------------------------------------------insert 문
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;//프리페어스테이트먼트 약자
