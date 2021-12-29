@@ -1,4 +1,4 @@
-package com.javaex.ex06;
+package com.javaex.ex07;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,10 @@ import java.util.List;
 public class BookDao {
 
 	// 필드
-
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	private String id = "webdb";
+	private String pw = "webdb";
 	// 생성자
 	public BookDao() {
 
@@ -27,11 +30,10 @@ public class BookDao {
 
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(driver);
 
 			// 2. Connection 얻어오기
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = DriverManager.getConnection(url, id, pw);
 
 			// 3. SQL문 준비 / 바인딩 / 실행
 			// 3.1 문자열 만들기, 데이터는 ?로 변경
@@ -82,11 +84,10 @@ public class BookDao {
 
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(driver);
 
 			// 2. Connection 얻어오기
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = DriverManager.getConnection(url, id, pw);
 
 			// 3. SQL문 준비 / 바인딩 / 실행
 			// 3.1 문자열 만들기, 데이터는 ?로 변경
@@ -139,11 +140,10 @@ public class BookDao {
 
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(driver);
 
 			// 2. Connection 얻어오기
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = DriverManager.getConnection(url, id, pw);
 
 			// 3. SQL문 준비 / 바인딩 / 실행
 			// 3.1 문자열 만들기, 데이터는 ?로 변경
@@ -191,11 +191,10 @@ public class BookDao {
 		ResultSet rs = null;
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(driver);
 			// 2. Connection 얻어오기
 			// 오라클에 정보 요청하기
-			String url = "jdbc:oracle:thin:@localhost:1521:xe"; // localhost = ip주소:포트:시드
-			conn = DriverManager.getConnection(url, "webdb", "webdb");// 연결해라, 전화선이 생김, url, "id", "pw"
+			conn = DriverManager.getConnection(url, id, pw);// 연결해라, 전화선이 생김, url, "id", "pw"
 			System.out.println("접속성공");
 
 			// 3. SQL문 준비 / 바인딩 / 실행
