@@ -26,7 +26,7 @@ public class BookUpdate {
 			// 3.1 문자열 만들기, 데이터는 ?로 변경
 			String query = "";
 			query += " update  book ";
-			query += " set     book_name= ?, ";
+			query += " set     book_title= ? ";
 			query += " where   book_id = ? ";
 			System.out.println(query);
 			

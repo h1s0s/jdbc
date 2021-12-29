@@ -13,10 +13,10 @@ import com.javaex.ex03.AuthorVo;
 public class AuthorDao {
 
 	// 필드
-	private String driver;
-	private String url;
-	private String id;
-	private String pw;
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	private String url =  "jdbc:oracle:thin:@localhost:1521:xe";
+	private String id = "webdb";
+	private String pw = "webdb";
 	
 	// 생성자
 	public AuthorDao() {
@@ -32,12 +32,11 @@ public class AuthorDao {
 		// ResultSet rs = null;
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(driver);
 
 			// 2. Connection 얻어오기
 			// 오라클에 정보 요청하기
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = DriverManager.getConnection(url, id, pw);
 			//System.out.println("접속성공");
 
 			// 3. SQL문 준비 / 바인딩 / 실행
@@ -86,12 +85,11 @@ public class AuthorDao {
 		// ResultSet rs = null;
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(driver);
 
 			// 2. Connection 얻어오기
 			// 오라클에 정보 요청하기
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = DriverManager.getConnection(url, id, pw);
 			//System.out.println("접속성공");
 
 			// 3. SQL문 준비 / 바인딩 / 실행
@@ -143,12 +141,11 @@ public class AuthorDao {
 		// ResultSet rs = null;
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(driver);
 
 			// 2. Connection 얻어오기
 			// 오라클에 정보 요청하기
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = DriverManager.getConnection(url, id, pw);
 			//System.out.println("접속성공");
 
 			// 3. SQL문 준비 / 바인딩 / 실행
@@ -198,12 +195,11 @@ public class AuthorDao {
 				
 				try {
 					// 1. JDBC 드라이버 (Oracle) 로딩
-					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Class.forName(driver);
 
 					// 2. Connection 얻어오기
 					// 오라클에 정보 요청하기
-					String url = "jdbc:oracle:thin:@localhost:1521:xe";
-					conn = DriverManager.getConnection(url, "webdb", "webdb");
+					conn = DriverManager.getConnection(url, id, pw);
 					//System.out.println("접속성공");
 
 					// 3. SQL문 준비 / 바인딩 / 실행
