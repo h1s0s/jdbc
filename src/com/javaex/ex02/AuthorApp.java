@@ -1,5 +1,7 @@
 package com.javaex.ex02;
 
+import java.util.List;
+
 public class AuthorApp {
 
 	public static void main(String[] args) {
@@ -13,11 +15,15 @@ public class AuthorApp {
 		//작가 등록(insert)
 		authorDao.authorInsert("박경리", "경상남도 통영");
 		
+		//select
+		List<AuthorVo> authorList = authorDao.authorSelect();
+		
+		
 		//작가 수정(Update)
-		authorDao.authorUpdate(2, "박경리(수정)", "경상남도 통영(수정)");
+		//authorDao.authorUpdate(2, "박경리(수정)", "경상남도 통영(수정)");
 		
 		//작가 삭제(Delete)
-		authorDao.authorDelete(1);
+		//authorDao.authorDelete(1);
 		
 	}
 }

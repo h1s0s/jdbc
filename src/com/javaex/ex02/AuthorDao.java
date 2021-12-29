@@ -3,7 +3,12 @@ package com.javaex.ex02;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.javaex.ex02.AuthorVo;
 
 public class AuthorDao {
 
@@ -69,6 +74,7 @@ public class AuthorDao {
 			}
 		}
 	}
+
 	public void authorUpdate(int authorId, String authorName, String authorDesc) {
 		// 0. import java.sql.*;
 		Connection conn = null;
@@ -92,10 +98,10 @@ public class AuthorDao {
 			query += " author_desc = ? ";
 			query += " where   author_id = ? ";
 			System.out.println(query);
-			
+
 			// 3.2 문자열을 쿼리문으로 만들기
 			pstmt = conn.prepareStatement(query);
-			
+
 			// 3.3 바인딩
 			pstmt.setString(1, authorName);
 			pstmt.setString(2, authorDesc);
@@ -147,10 +153,10 @@ public class AuthorDao {
 			query += " delete  from author ";
 			query += " where   author_id = ? ";
 			System.out.println(query);
-			
+
 			// 3.2 문자열을 쿼리문으로 만들기
 			pstmt = conn.prepareStatement(query);
-			
+
 			// 3.3 바인딩
 			pstmt.setInt(1, authorId);
 
@@ -177,5 +183,76 @@ public class AuthorDao {
 				System.out.println("error:" + e);
 			}
 		}
+	}
+
+	public List<AuthorVo> authorSelect() {
+		List<AuthorVo> authorList = new ArrayList<AuthorVo>();
+				// 0. import java.sql.*;
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				
+				try {
+					// 1. JDBC 드라이버 (Oracle) 로딩
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+
+					// 2. Connection 얻어오기
+					// 오라클에 정보 요청하기
+					String url = "jdbc:oracle:thin:@localhost:1521:xe";
+					conn = DriverManager.getConnection(url, "webdb", "webdb");
+					System.out.println("접속성공");
+
+					// 3. SQL문 준비 / 바인딩 / 실행
+					// 3.1 문자열 만들기
+					String query = "";
+					query += " select author_id, ";
+					query += "        author_name, ";
+					query += "        author_desc ";
+					query += " from   author ";
+					System.out.println(query);
+					
+					// 3.2 문자열을 쿼리문으로 만들기
+					pstmt = conn.prepareStatement(query);
+					
+					// 3.3 실행
+					rs = pstmt.executeQuery();
+
+					// 4.결과처리
+					while(rs.next()) {
+
+						int authorId = rs.getInt(1);
+						String authorName = rs.getString(2);
+						String authorDesc = rs.getString(3);
+						
+						AuthorVo vo = new AuthorVo(authorId, authorName, authorDesc);
+						authorList.add(vo);
+					}
+					//리스트 전체 출력
+					for(int i=0; i<authorList.size(); i++) {
+						AuthorVo authorVo = authorList.get(i);
+						System.out.println(authorVo.getAuthorId()+"," +authorVo.getAuthorName()+", "+authorVo.getAuthorDesc());
+					}
+
+				} catch (ClassNotFoundException e) {
+					System.out.println("error: 드라이버 로딩 실패 - " + e);
+				} catch (SQLException e) {
+					System.out.println("error:" + e);
+				} finally {
+					// 5. 자원정리
+					try {
+						if (rs != null) {
+							rs.close();
+						}
+						if (pstmt != null) {
+							pstmt.close();
+						}
+						if (conn != null) {
+							conn.close();
+						}
+					} catch (SQLException e) {
+						System.out.println("error:" + e);
+					}
+				}
+				return authorList;
 	}
 }
