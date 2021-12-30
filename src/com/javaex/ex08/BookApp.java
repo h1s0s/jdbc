@@ -7,9 +7,7 @@ import java.util.Scanner;
 public class BookApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		// 작가dao 추가
+		// 작가 dao 추가
 		AuthorDao authorDao = new AuthorDao();
 
 		// 작가 추가
@@ -80,5 +78,4 @@ public class BookApp {
 
 		sc.close();
 	}
-
 }
