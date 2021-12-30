@@ -23,8 +23,7 @@ public class BookApp {
 		BookList = bookDao.BookSelect();
 		for (int i = 0; i < BookList.size(); i++) {
 			BookVo vo = BookList.get(i);
-			System.out.println(vo.getBookId() + ", " + vo.getTitle() + ", " + vo.getPubs() + ", " + vo.getPubDate() + ", " + vo.getAuthorId());
-		}
+			System.out.println(vo.getBookId() + ", " + vo.getTitle() + ", " + vo.getPubs() + ", " + vo.getPubDate() + ", " + vo.getAuthorId());}
 		System.out.println("--------------------------------------------------------------------------------------");
 		// 책 수정(Update)
 		BookVo updatebook = new BookVo(2, "삼국지(수정)", "민음사(수정)", "2002-03-01");
@@ -39,9 +38,6 @@ public class BookApp {
 		for (int i = 0; i < BookList.size(); i++) {
 			BookVo vo = BookList.get(i);
 			System.out.println(vo.getBookId() + ", " + vo.getTitle() + ", " + vo.getPubs() + ", " + vo.getPubDate());
-		System.out.println("--------------------------------------------------------------------------------------");
 		}
-
 	}
-
 }
