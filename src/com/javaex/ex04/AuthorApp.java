@@ -41,7 +41,7 @@ public class AuthorApp {
 		System.out.println("---------------------------------");
 		
 		//작가 삭제(Delete)
-		authorDao.authorDelete(1);
+		//authorDao.authorDelete(1);
 		
 		System.out.println("---------------------------------");
 		list = authorDao.authorSelect();
